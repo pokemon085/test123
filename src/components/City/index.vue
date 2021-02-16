@@ -1,5 +1,26 @@
 <template>
 <div class="city_body">
+    <!-- <div class="city_list">
+        <div class="city_hot">
+            <h2>熱門城市</h2>
+            <ul class="clearfix">
+                <li v-for="item in hostList" :key="item.id">{{item.nm}}</li>
+            </ul>
+        </div>
+        <div class="city_sort" ref="city_sort">
+            <div v-for="item in cityList" :key="item.index">
+                <h2>{{item.index}}</h2>
+                <ul>
+                    <li v-for="itemList in item.list" :key="itemList.id">{{itemList.nm}}</li>
+                </ul>
+            </div>
+        </div>  
+        <div class="city_index">
+            <ul>
+                <li v-for="(item,index) in cityList" :key="item.index" @touchstart="handleToIndex(index)">{{item.idex}}</li>
+            </ul>  
+        </div>              
+    </div> -->
     <div class="city_list">
         <div class="city_hot">
             <h2>熱門城市</h2>
@@ -12,7 +33,7 @@
                 <li>北京3</li>
             </ul>
         </div>
-        <div class="city_sort">
+        <div class="city_sort" ref="city_sort">
             <div>
                 <h2>a</h2>
                 <ul>
@@ -64,7 +85,76 @@
 
 <script>
 export default {
-    name:'City'
+    name:'City',
+    data(){
+        return{
+            cityList:[],
+            hotList:[]
+        }
+    },
+//    mounted(){
+//        this.axios.get('/api/cityList').then((res)=>{
+//            var msg=res.data.msg;
+//            if(msg==='ok'){
+//                var cities=res.data.data.cities;
+//                //[{index:'A',list:[{nm:'城市',id:123}]}]
+//                var{cityList,hotList}=this.formatCityList(cities);
+                //   this.cityList=cityList;
+                //   this.hotList=hotList;
+//            }
+//        })
+//    },
+//    methods:{
+//        formatCityList(cities){
+//            var cityList=[];
+//            var hotList=[]; //熱門城市
+
+//               for(var i=0;i<cities.length;i++){
+//                   if(cities[i].isHot===1){
+//                       hotList.push(cities[i]);
+//                   }
+//               }  
+//            for(var i=0;i<cities.length;i++){
+//                //要照字母排序
+//                var firstLetter=cities[i].py.substring(0,1).toUpperCase();//城市英文的開頭
+//                 if(toCom(firstLetter)){ //不存在陣列 新添加index
+//                     cityList.push({index:firstLetter,list:[{nm:cities[i].nm,id:cities[i].id}]})
+//                 }else{ //累加已存在index
+//                     for(var j=0;j<cityList.length;j++){
+//                         if(cityList[j].index===firstLetter){
+//                             cityList[j].list.push({nm:cities[i].nm,id:cities[i].id})
+//                         }
+//                     }
+//                 }
+//           }
+
+//            cityList.sort((n1,n2)=>{
+//                if(n1.index>n2.index){
+//                    return 1;
+//                }else if(n1.index<n2.index){
+//                    return -1;
+//                }else{
+//                    return 0;
+//                }
+//            })
+//            function toCom(firstLetter){
+//                 for(var i=0;i<cityList.length;i++){
+//                     if(cityList[i].index===firstLetter){
+//                         return false
+//                     }
+//                 }
+//                 return true;
+//            }
+//           return{
+//               cityList,
+//               hotList
+//           }
+//        },
+//        handleToIndex(index){
+//            var h2=this.$refs.city_sort.getElementsByTagName('h2');
+//            this.$refs.city_sort.parentNode.scrollTop=h2[index].offsetTop;
+//        }
+ // }
 }
 </script>
 <style scoped>

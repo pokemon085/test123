@@ -1,5 +1,23 @@
 <template>
     <div class="movie_body">
+                <!-- <ul>
+            <li v-for="item in movieList" :key="item.id">
+                <div class="pic_show">
+                    <img :src="item.img | setWH('128.180')"></div>
+                <div class="info_last">
+                    <h2>{{item.nm}}<img v-if="item.version" src="@/assets/maxs.png" alt=""></h2>
+                    <p>觀眾評
+                        <span class="grade">{{item.sc}}</span></p>
+                    <p>主演:{{item.star}}</p>
+                    <p>{{item.showInfo}}</p>
+                </div>
+                <div class="btn_mail">
+                    購票
+                </div>
+            </li>
+        </ul>    -->
+        <!--------  -->
+    
         <ul>
             <li>
                 <div class="pic_show">
@@ -81,7 +99,47 @@
 
 <script>
 export default {
-    name:"NowPlaying"
+    name:"NowPlaying",
+    data(){
+        return{
+            movieList:[],
+            movieList2:{
+                "msg":'ok',
+                "status":[],
+                "data":{
+                    "movieList":[
+                        {
+                            "id":241139,
+                            "hasproaotionTag":false,
+                            "img":"/images/movie_1.jpg",
+                            "version":"v3d",
+                            "nm":"傳奇隊長",
+                            "preShow":false,
+                            "sc":[],
+                            "globalReleased":false,
+                            "wish":426078,
+                            "star":"aaaa,bbbb",
+                            "rd":"2019-03-08",
+                            "showInfo":"今天25家電影院放映33場",
+                            "showst":4,
+                            "widist":0
+                        }
+                    ]
+                }
+            }
+                
+
+            
+        }
+    },
+    mounted(){
+        // this.axios.get('/api/movieOnInfoList?cityId=10').then((res)=>{
+        //     var msg=res.data.msg;
+        //     if(msg==='ok'){
+        //         this.movieList=res.data.data.movieList;
+        //     }
+        // })
+    }
 }
 </script>
 <style scoped>
