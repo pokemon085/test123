@@ -3,12 +3,21 @@
     <div class="search_input">
         <div class="search_input_wrapper">
             <i class="iconfont icon-sousuo"></i>
-            <input type="text">
+            <input type="text" v-model="message">
         </div>
     </div>
     <div class="search_result">
         <h3>電影/電視劇/綜藝</h3>
         <ul>
+            <!-- <li v-for="item in movieList" :key="item.id">
+                <div class="img"><img :src="item.img |setWH('128.180')"></div>
+                <div class="info">
+                    <p><span>{{item.nm}}</span><span>{{item.sc}}</span></p>
+                    <p>{{item.enm}}</p>
+                    <p>{{item.cat}}</p>
+                    <p>{{item.rt}}</p>
+                </div>
+            </li> -->
             <li>
                 <div class="img"><img src="/images/movie_1.jpg"></div>
                 <div class="info">
@@ -34,7 +43,43 @@
 
 <script>
 export default {
-    name:'Search'
+    name:'Search',
+    data(){
+        return{
+            message:"",
+            movieList:[]
+        }
+    },
+    methods:{
+        cancelRequest(){
+            if(typeof this.source==="function"){
+                this.source('終止請求')
+            }
+        }
+    },
+    // watch:{
+    //     message(newVal){
+    //         var that=this;
+    //         this.cancelRequest();
+    //         this.axios.get('/api/searchList?cityId=10&kw='+newVal,{
+    //             cancelToken:new this.axios.CancelToken(function(c){
+    //                 that.source=c;
+    //             })
+    //         }).then((res)=>{
+    //             var msg=res.data.msg;
+    //             var movies=res.data.data.movies;
+    //             if(msg && movies){
+    //                 this.movieList=res.data.data.movies.list;
+    //             }
+    //         }).catch((err)=>{
+    //             if(this.axios.isCancel(err)){
+    //                 console.log('rquest caneled',err.message);
+    //             }else{
+    //                 console.log(err);
+    //             }
+    //         })
+    //     }
+    // }
 }
 </script>
 <style scoped>
